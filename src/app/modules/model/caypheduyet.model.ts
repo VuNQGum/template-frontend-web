@@ -1,0 +1,20 @@
+export interface CaypheduyetModel {
+    actionCode: string,
+    departmentId: number,
+    fileId: string,
+    fileName: string,
+    gomtt: boolean,
+    id: null,
+    isLastApproved: boolean,
+    isRoot: boolean,
+    name: string,
+    nghiepvuCode: string,
+    nodeName: string,
+    nsPheduyetId: null,
+    parentId: null,
+    rootId: null,
+    sttPheduyet: null,
+    vtriPheduyetCode: string,
+    vtriPheduyetId: null,
+    nsPheduyetName: string
+  }

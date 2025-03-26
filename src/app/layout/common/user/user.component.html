@@ -1,0 +1,41 @@
+<!-- Button -->
+<div [matMenuTriggerFor]="userActions" class="h-name-user"
+    style="margin-right: 16px;flex-direction: row;display: flex; cursor: pointer; align-items: center;">
+    <span class="relative" *ngIf="user$.value ? true : false">
+        <img mat-icon-button class="w-8 h-8 rounded-full ng-star-inserted"
+            style="width: 32px !important; height: 32px !important" *ngIf="showAvatar && user$?.value.avatar"
+            [src]="user$?.value.avatar" />
+    </span>
+    <div class="u-name ml-4">
+        <div>{{ user$.value?.hoten }}</div>
+        <div style="color: #7B7B7B;">{{ user$.value?.chucdanh }}</div>
+    </div>
+</div>
+
+<mat-menu class="menuPopup" [xPosition]="'before'" #userActions="matMenu">
+    <div mat-menu-item style="
+            display: flex;
+            height: 72px;
+            align-items: center;
+            margin-bottom: 12px;">
+        <div style="display: flex; align-items: center; flex-direction: column">
+            <span style="line-height: 16px">{{ user$.value?.hoten }}</span>
+            <span style="line-height: 16px; color: grey">Phòng ban: {{ user$.value?.tenphongban }}</span>
+        </div>
+    </div>
+    <!-- <mat-divider class="my-2"></mat-divider>
+    <button mat-menu-item>
+        <i class="fal fa-address-card mr-2" style="font-size: 24px;"></i>
+        <span>Profile</span>
+    </button>
+    <button mat-menu-item>
+        <i class="fal fa-phone-laptop mr-2" style="font-size: 24px;"></i>
+        <span>Thống kê truy cập</span>
+    </button> -->
+
+    <mat-divider class="my-2"></mat-divider>
+    <button mat-menu-item (click)="signOut()">
+        <i class="fal fa-sign-out mr-2" style="font-size: 24px;"></i>
+        <span>Sign out</span>
+    </button>
+</mat-menu>

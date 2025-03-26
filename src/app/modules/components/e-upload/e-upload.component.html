@@ -1,0 +1,10 @@
+<form novalidate [formGroup]="formImport">
+    <div class="input-upload">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" formControlName="importFile" id="importFile"
+                (change)="onFileChange($event.target.files)">
+            <label class="custom-file-label" #labelImport for="importFile"><i class="fa-light fa-arrow-up-from-bracket"></i>{{file?.name}}</label>
+        </div>
+    </div>
+
+</form>

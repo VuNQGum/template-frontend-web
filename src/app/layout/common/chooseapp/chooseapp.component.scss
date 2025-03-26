@@ -1,0 +1,10 @@
+.box-app {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+.box-app i {
+    font-size: 24px;
+}

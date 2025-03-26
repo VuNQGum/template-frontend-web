@@ -1,0 +1,50 @@
+<!-- Bar search -->
+<ng-container class="bg-head-app">
+    <button class="button-icon" mat-icon-button *ngIf="!opened" (click)="open()" style="margin-right: 16px;">
+        <!-- <mat-icon [svgIcon]="'heroicons_outline:search'"></mat-icon> -->
+        <i class="fal fa-border-all icon-size-6"></i>
+    </button>
+        <div
+        class="bg-head-app absolute inset-0 flex items-center flex-shrink-0 z-99 bg-card"
+        *ngIf="opened">    
+        <!-- <a href="http://localhost:4200/">
+            <i class="fal fa-dice-five absolute ml-6 sm:ml-8" style="font-size: 24px;"></i>
+        </a> -->
+        <div class="w-full h-full px-16 sm:px-18" style=" display: flex; align-items: center; justify-content: center;">
+
+           <ng-container *ngFor="let item of user.value.applications; trackBy: trackByFn"> 
+                <a class="box-app" *ngIf="item.appActive">
+                    <i class="{{item.appIcon}}"></i>
+                    <span>{{item.appName}}</span>
+                </a> 
+           </ng-container> 
+        <!--    
+            <a class="box-app">
+                <i class="fal fa-address-card"></i>
+                <span>Invoice</span>
+            </a>
+            <a class="box-app">
+                <i class="fal fa-graduation-cap"></i>
+                <span>IMIS 2</span>
+            </a>
+            <a class="box-app">
+                <i class="fal fa-battery-full"></i>
+                <span>Digital Office</span>
+            </a>
+            <a class="box-app">
+                <i class="fal fa-balance-scale"></i>
+                <span>Invoice</span>
+            </a>
+            <a class="box-app">
+                <i class="fal fa-bahai"></i>
+                <span>IMIS 2</span>
+            </a>
+            -->
+        </div>
+
+        <button class="absolute top-1/2 right-5 sm:right-7 flex-shrink-0 w-10 h-10 -mt-5" mat-icon-button
+            (click)="close()">
+            <i class="fal fa-times" style="font-size: 24px;"></i>
+        </button>
+    </div>
+</ng-container>

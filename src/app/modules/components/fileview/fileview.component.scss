@@ -1,0 +1,11 @@
+@media (min-width: 960px) {
+    .custom-dialog {
+        min-width: 960px;
+    }
+}
+
+@media (max-width: 959px) {
+    .custom-dialog {
+        min-width: 80vw;
+    }
+}

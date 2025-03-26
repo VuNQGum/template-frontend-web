@@ -1,0 +1,21 @@
+export enum LOAIQD {
+    // TDKT_KHENTHUONG = "TDKT_KHENTHUONG",
+	LUONG = "Quyết định lương",
+    // String QTrinhLuongDieuchinh = "LUONG2"
+    CHUCVU = "Quyết định chức vụ",
+    CVDOANTHE = "Quyết định chức vụ đoàn thể",
+    KYLUAT = "Quyết định kỷ luật",
+    NUOCNGOAI = "Quyết định nước ngoài",
+    KHENTHUONG = "Quyết định khen thưởng",
+    KTHUONG = "Quyết định khen thưởng",
+    DAOTAO = "Quyết định đào tạo",
+    DIEUDONG = "Quyết định điều động",
+    HDLD = "Hợp đồng lao động",
+    PHUCAP = "Quyết định phụ cấp",
+    QUYHOACH = "Quyết định quy hoạch",
+    PHONGTO = "Quyết định phòng tổ",
+    DtaiKhoc = "Quyết định đề tài khoa học",
+    NGHIVIEC = "Quyết định nghỉ việc",
+    DaidienDvCp = "Quyết định đại diện đơn vị cổ phần",
+    TIEUBANTOCT = "Quyết định tiểu ban tổ công tác",
+}

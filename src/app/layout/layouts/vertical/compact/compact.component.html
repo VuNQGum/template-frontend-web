@@ -1,0 +1,91 @@
+<!-- Loading bar -->
+<fuse-loading-bar></fuse-loading-bar>
+
+<!-- Navigation -->
+<fuse-vertical-navigation
+    class="dark bg-gray-900 print:hidden"
+    [appearance]="'compact'"
+    [mode]="isScreenSmall ? 'over' : 'side'"
+    [name]="'mainNavigation'"
+    [navigation]="navigation"
+    [opened]="!isScreenSmall">
+    <!-- Navigation header hook -->
+    <ng-container fuseVerticalNavigationContentHeader>
+        <div class="flex items-center justify-center h-20">
+            <a href="{{homeURL}}" style="cursor: pointer;" matTooltip="Đi tới Portal App">
+                <img class="w-8" src="assets/images/logo/logo.png" alt="Đi tới Portal">
+            </a>
+        </div>
+    </ng-container>
+</fuse-vertical-navigation>
+
+<!-- Wrapper -->
+<div class="flex flex-col flex-auto w-full min-w-0">
+
+    <!-- Header -->
+    <div class="relative flex flex-0 items-center w-full h-14 px-4 bg-gray-100 md:px-6 z-49 shadow dark:shadow-none dark:border-b dark:bg-transparent print:hidden">
+        <div class="warnZone-GMT7" *ngIf="warnZone">
+            <span style="color: #FFF;"> Bạn đang sử dụng múi giời không phải ở Việt Nam. <br /> Vui lòng chuyển múi
+                giời sang giời GMT + 7 để sử dụng và hiển thị các dữ liệu thời gian theo giời Việt Nam</span>
+
+        </div>
+        <!-- Navigation toggle button -->
+        <div style="text-align: center;">
+            <button
+                mat-icon-button
+                (click)="toggleNavigation('mainNavigation')">
+                <i class="fal fa-bars icon-size-5"></i>
+            </button>
+            <span class="version" matTooltip="Phiên bản v2.1.4">v2.0.0</span>
+        </div>
+        <div class="hidden md:block flex-row" style="min-width: 320px;">
+            <ng-container *ngIf="title$ | async as title">
+            <span style="font-size: 16px;font-weight: 800; padding-left: 8px;">{{title.title}}</span>
+            <i *ngIf="title.subTitle" class="fal fa-angle-right ml-1 mr-1" style="font-size: 16px;"></i>
+            <span *ngIf="title.subTitle" style="font-size: 16px;font-weight: 800;">{{title.subTitle}}</span>
+            <i *ngIf="is_filter" class="fal fa-filter icon-size-5 ml-4 cursor-pointer"  (click)="onFilterHd()" matTooltip="Lọc theo danh sách ký (lô)"></i>
+            </ng-container>
+        </div>
+        <!-- Components -->
+        <div class="flex items-center pl-2 ml-auto space-x-0.5 sm:space-x-2 w-full">
+            <!-- <fuse-fullscreen class="hidden md:block"></fuse-fullscreen> -->
+            <!-- <search [appearance]="'bar'"></search> -->
+            <div *ngIf="is_search" id="seachBar">
+                <i class="fal fa-search-plus ml-2" (click)="onAdSeach()" matTooltip="Click tìm kiếm nâng cao"></i>
+                <input class="w-full pr-2" [placeholder]="'Tìm kiếm'" #barSearchInput [ngModel]='textValue'  (ngModelChange)='onChangeText($event)' (keyup.enter)="onSearchServer()">
+                <i *ngIf="textValue !==''" class="fa-light fa-xmark text-lg mr-2"  (click)="onClear()"></i>
+            </div>
+            <div *ngIf="!is_search" id="department">
+                <span style="font-size: 16px;font-weight: 800; padding-left: 8px; text-align: center; text-transform: uppercase;">{{donvi?.orgName}}</span>
+            </div>
+            <!-- <div *ngIf="!is_search" id="seachBarNone"></div> -->
+            <lib-evn-lib-notify2
+                [baseApiUrl]="'https://smartevn-test.evn.com.vn'"
+                [baseWSUrl]="'https://smartevn-test.evn.com.vn/notify/ws-notifications'"
+                (onPushNotification)="handleNotify($event)"
+            >
+            </lib-evn-lib-notify2>
+         <user></user>
+        </div>
+    </div>
+
+    <!-- Content -->
+    <div class="flex flex-col flex-auto">
+        <div *ngIf="showError" class="fixed flex items-center justify-end right-0 z-99999 cursor-pointer m-4 max-w-md">
+            <fuse-alert [type]="typeAlert" [appearance]="'outline'" [name]="'alertBox'" [dismissible]="true"
+                [dismissed]="true">
+                <span fuseAlertTitle>{{titleAlert}}</span>
+                {{contentAlert}}
+            </fuse-alert>
+        </div>
+        <!-- *ngIf="true" hack is required here for router-outlet to work correctly.
+             Otherwise, layout changes won't be registered and the view won't be updated! -->
+        <router-outlet *ngIf="true"></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <!-- <div class="relative flex flex-0 items-center justify-start w-full h-14 px-4 md:px-6 z-49 border-t bg-card dark:bg-transparent print:hidden">
+        <span class="font-medium text-secondary">Fuse &copy; {{currentYear}}</span>
+    </div> -->
+
+</div>

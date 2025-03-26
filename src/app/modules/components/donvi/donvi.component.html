@@ -1,0 +1,38 @@
+<div class="flex flex-col max-w-310 md:min-w-310 overflow-hidden max-h-screen -m-6">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-12 pr-3 pl-6 bg-primary text-on-primary">
+        <div class="text-lg font-medium head-modal">
+            <span>Đơn vị</span>
+            <mat-form-field style="width: 320px !important; margin-left: 16px;">
+                <input autofocus="true" style="width: 300px !important;" matInput type="text"
+                    (input)="dtdonvi.filterGlobal($event.target.value, 'contains')" placeholder="Search keyword">
+            </mat-form-field>
+        </div>
+        <button mat-icon-button [tabIndex]="-1" (click)="saveAndClose()">
+            <i class="fa-light fa-xmark icon-size-5"></i>
+        </button>
+    </div>
+
+    <div #maindv class="flex flex-col flex-auto h-modal">
+        <p-table #dtdonvi [value]="allDonvi" selectionMode="single" dataKey="nsId" responsiveLayout="scroll"
+            scrollHeight="{{maindv.offsetHeight}}px" [globalFilterFields]="['orgName','shortName']"
+            [scrollable]="true">
+            <ng-template pTemplate="header">
+                <tr>
+                    <!-- <th>Id</th> -->
+                    <!-- <th pSortableColumn="orgCode" style="flex: 0 0 15%;">Mã đơn vị</th> -->
+                    <th pSortableColumn="orgName" style="width: 70%;">Tên đơn vị</th>
+                    <th pSortableColumn="shortName" style="width: 30%;">Tên tắt</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-org>
+                <tr [pSelectableRow]="nhansu" (dblclick)="onRowSelect($event, org)">
+                    <!-- <td style="flex: 0 0 15%;">{{org.orgCode}}</td> -->
+                    <td style="width: 70%;">{{org.orgName}}</td>
+                    <td style="width: 30%;">{{org?.shortName}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

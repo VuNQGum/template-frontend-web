@@ -1,0 +1,8 @@
+export enum NGHIEPVULKYCODE {
+	BCCB = "BCCB",
+    BCLDTN = "BCLDTN",
+    BCKHTD = "BCKHTD",
+    LDKKHDT = "LDKKHDT",
+    BCDT = "BCDT",
+    BCTDKT = "BCTDKT"
+}

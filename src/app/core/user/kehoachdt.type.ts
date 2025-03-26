@@ -1,0 +1,4 @@
+export const KEHOACH_DT = {
+    LAP_VA_DANG_KY: "LAP_VA_DANG_KY",
+    KHDT_DUOC_GIAO: "KHDT_DUOC_GIAO",
+};

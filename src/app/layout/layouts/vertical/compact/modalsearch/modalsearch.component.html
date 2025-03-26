@@ -1,0 +1,90 @@
+<div class="adSearch flex flex-col max-w-240 md:min-w-160 max-h-screen -m-6">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-12 pr-3 sm:pr-5 pl-6 sm:pl-8 bg-primary text-on-primary">
+        <div class="text-lg font-medium">Tìm kiếm nâng cao</div>
+        <button mat-icon-button [tabIndex]="-1" (click)="saveAndClose()">
+            <i class="fa-light fa-xmark icon-size-5"></i>
+        </button>
+    </div>
+
+    <!-- Compose form -->
+    <div class="flex flex-col flex-auto p-6 sm:p-8 overflow-y-auto">
+
+        <!-- Cc -->
+        <div class="flex items-center w-full mb-4">
+            <div class="fuse-mat-no-subscript w-full pr-2">
+                <div class="mat-field-label">Phòng ban</div>
+                <p-dropdown [style]="{'width':'100%'}" placeholder="Chọn phòng ban" [options]="listPhongbans"
+                    [(ngModel)]="modelSearch.phongban" [showClear]="true" filter="true">
+                </p-dropdown>
+            </div>
+        </div>
+
+        <div class="flex items-center w-full mb-4">
+
+            <div class="fuse-mat-no-subscript w-2/4 pr-2">
+                <div class="mat-field-label">Người đăng ký</div>
+                <p-dropdown [style]="{'width':'100%'}" [filter]="true" placeholder="Người đăng ký"
+                    [options]="listNhansu" [(ngModel)]="modelSearch.nguoidangky" [showClear]="true">
+                </p-dropdown>
+            </div>
+            <!-- Icon name -->
+
+
+            <!-- Icon color -->
+            <div class="fuse-mat-no-subscript w-2/4 pr-2">
+                <div class="mat-field-label">Người ký</div>
+                <p-dropdown [style]="{'width':'100%'}" [filter]="true" placeholder="Người ký" [options]="listNhansu"
+                    [(ngModel)]="modelSearch.nguoiky" [showClear]="true">
+                </p-dropdown>
+            </div>
+        </div>
+
+        <div class="flex items-center w-full mb-4">
+            <!-- Icon name -->
+            <mat-form-field class="fuse-mat-no-subscript w-2/4 pr-2">
+                <mat-label>Từ ngày</mat-label>
+                <input matInput [matDatepicker]="tupicker" [(ngModel)]="modelSearch.tungay">
+                <mat-datepicker-toggle matSuffix [for]="tupicker"></mat-datepicker-toggle>
+                <mat-datepicker #tupicker></mat-datepicker>
+            </mat-form-field>
+            <!-- Icon name -->
+            <mat-form-field class="fuse-mat-no-subscript w-2/4 pr-2">
+                <mat-label>Đến ngày</mat-label>
+                <input matInput [matDatepicker]="denpicker" [(ngModel)]="modelSearch.denngay">
+                <mat-datepicker-toggle matSuffix [for]="denpicker"></mat-datepicker-toggle>
+                <mat-datepicker #denpicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <mat-form-field>
+            <mat-label>Từ khóa</mat-label>
+            <input matInput [(ngModel)]="modelSearch.tukhoa">
+
+        </mat-form-field>
+
+
+
+
+
+        <!-- Actions -->
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between mt-4 sm:mt-6">
+            <div class="flex items-center w-full">
+                <div class="fuse-mat-no-subscript">
+                    <mat-checkbox class="mr-4" [(ngModel)]="modelSearch.chuaxuly">Chưa xử lý</mat-checkbox>
+                    <mat-checkbox class="mr-4" [(ngModel)]="modelSearch.daxuly">Đã xử lý</mat-checkbox>
+                    <mat-checkbox [(ngModel)]="modelSearch.tralai">Trả lại</mat-checkbox>
+                </div>
+            </div>
+
+            <div class="flex items-center mt-4 sm:mt-0">
+                <button class="order-first sm:order-last button-primary" mat-flat-button (click)="onSearchServer()">
+                    <!-- <i class="fa-light fa-paper-plane-top"></i> -->
+                    <i class="fa-light fa-magnifying-glass"></i>
+                    <span class="ml-2">Tìm</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

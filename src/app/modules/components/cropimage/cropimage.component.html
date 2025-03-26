@@ -1,0 +1,77 @@
+
+
+<div class="flex flex-col max-w-310 md:min-w-310 overflow-hidden max-h-screen -m-6">
+
+    <!-- Header -->
+    <div class="flex flex-0 items-center justify-between h-12 pr-3 sm:pr-5 pl-6 sm:pl-8 bg-primary text-on-primary">
+        <div class="text-lg font-medium head-modal">
+            <span>Cập nhật ảnh</span>
+        </div>
+        <button mat-icon-button [tabIndex]="-1" (click)="close()">
+            <i class="fa-light fa-xmark icon-size-5"></i>
+        </button>
+    </div>
+
+    <div #mainns class="flex flex-col flex-auto h-modal max-h-128 overflow-y-auto">
+        <div class="flex flex-wrap justify-center w-full min-w-0 p-6 overflow-y-auto mt-4">
+            <div mat-dialog-actions class="absolute z-10 top-12 h-toolbar flex flex-wrap justify-center">
+                <button class="px-8 m-1 button-primary" mat-flat-button type="button" (click)="rotateLeft()">
+                    <i class="fa-light fa-arrow-rotate-left icon-size-5" matTooltip="Quay trái"></i>
+                    <!-- <span class="ml-2">Quay trái</span> -->
+                </button>
+                <button class="px-8 m-1 button-primary" mat-flat-button type="button" (click)="rotateRight()">
+                    <i class="fa-light fa-arrow-rotate-right icon-size-5" matTooltip="Quay phải"></i>
+                    <!-- <span class="ml-2">Quay phải</span> -->
+                </button>
+                <button class="px-8 m-1 button-primary" mat-flat-button type="button" (click)="zoomIn()">
+                    <i class="fa-light fa-magnifying-glass-plus icon-size-5" matTooltip="Phóng to"></i>
+                    <!-- <span class="ml-2">Phóng to</span> -->
+                </button>
+                <button class="px-8 m-1 button-primary" mat-flat-button type="button" (click)="zoomOut()">
+                    <i class="fa-light fa-magnifying-glass-minus icon-size-5" matTooltip="Thu nhỏ"></i>
+                    <!-- <span class="ml-2">Thu nhỏ</span> -->
+                </button>
+                <button class="px-8 m-1 button-primary" mat-flat-button type="button" (click)="resetImage()">
+                    <i class="fa-light fa-xmark icon-size-5" matTooltip="Reset"></i>
+                    <!-- <span class="ml-2">Reset</span> -->
+                </button>
+            </div>
+            <div *ngIf="data" class="flex flex-col justify-start w-full sm:w-3/4">
+                <div class="mat-field-label">Chỉnh sửa ảnh</div>
+                <div class="border-2">
+                    <image-cropper [imageFile]="data" [maintainAspectRatio]="true" [cropperStaticWidth]="200" cropperMinWidth="200" cropperMinHeight="300"
+                        [cropperStaticHeight]="300" [roundCropper]="false"
+                        [canvasRotation]="canvasRotation" [transform]="transform" [alignImage]="'center'"
+                        [style.display]="showCropper ? null : 'none'" format="png" (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady($event)" [containWithinAspectRatio]="false"
+                        (loadImageFailed)="loadImageFailed()"></image-cropper>
+                </div>
+            </div>
+            <div class="flex flex-row items-center sm:flex-col w-full sm:w-1/4">
+                <div class="flex flex-col justify-center">
+                    <div class="mat-field-label">Ảnh sau khi cắt</div>
+                    <app-imageview [source]="croppedImage" [type]="'base64'" [width]="100"
+                        [height]="150"></app-imageview>
+                </div>
+                <div class="flex flex-col justify-center">
+                    <div class="mat-field-label">Ảnh gốc</div>
+                    <app-imageview [source]="sourceImage" [type]="'base64'" [width]="100" [height]="150"></app-imageview>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="flex flex-0 items-center justify-end h-12 mr-2 pr-3 sm:pr-5 pl-6 sm:pl-8 mt-2 text-on-primary">
+        <div mat-dialog-actions class="h-toolbar flex justify-end">
+            <button class="mx-1 button-green" mat-flat-button (click)="saveAndClose()">
+                <i class="fa-light fa-check icon-size-5"></i>
+                <span class="ml-2">Cập nhật</span>
+            </button>
+            <button class="mx-1 button-red" mat-flat-button (click)="close()">
+                <i class="fa-light fa-xmark icon-size-5"></i>
+                <span class="ml-2">Đóng</span>
+            </button>
+        </div>
+    </div>
+</div>
