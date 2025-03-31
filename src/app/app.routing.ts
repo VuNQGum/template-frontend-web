@@ -32,6 +32,7 @@ export const appRoutes: Route[] = [
             { path: 'reset-password', loadChildren: () => import('app/modules/auth/reset-password/reset-password.module').then(m => m.AuthResetPasswordModule) },
             { path: 'sign-in', loadChildren: () => import('app/modules/auth/sign-in/sign-in.module').then(m => m.AuthSignInModule) },
             { path: 'test', loadChildren: () => import('app/modules/test/test.module').then(m => m.TestModule) },
+            { path: 'test2', loadChildren: () => import('app/modules/test2/test2.module').then(m => m.Test2Module) },
         ]
     },
 
@@ -44,7 +45,7 @@ export const appRoutes: Route[] = [
             initialData: InitialDataResolver,
         },
         data: {
-            layout: 'thin'
+            layout: 'compact'
         },
         children: [
 
